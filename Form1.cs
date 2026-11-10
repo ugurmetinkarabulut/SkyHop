@@ -85,7 +85,7 @@ public class Form1 : Form
         {
             pipes[i].Reset(390 + i * PipeSpacing, 155 + i * 55);
         }
-        spacePressed = false;
+        // Basılı Space yeniden başlatmada yeni basış sayılmaz; KeyUp beklenir.
         isGameOver = false;
         isPlaying = true;
         startButton.Visible = false;

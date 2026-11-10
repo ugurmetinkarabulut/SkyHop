@@ -38,4 +38,4 @@ Nesne `new` ile oluşturulurken çalışan, sınıfla aynı isimde ve dönüş t
 
 ## 10. Yeniden başlatma nasıl çalışıyor?
 
-Yeniden Başlat butonu `StartGame()` metodunu çağırır. Önce Timer durdurulur. Skor sıfırlanır, `bird.Reset()` kuşu başlangıca getirip hızını sıfırlar. Döngüyle bütün engeller ilk konum ve boşluklarına döner, puan bayrakları temizlenir. Oyun durumu ve Space bilgisi sıfırlanır, butonlar gizlenir, odak forma verilir ve Timer yeniden başlar.
+Yeniden Başlat butonu `StartGame()` metodunu çağırır. Önce Timer durdurulur. Skor sıfırlanır, `bird.Reset()` kuşu başlangıca getirip hızını sıfırlar. Döngüyle bütün engeller ilk konum ve boşluklarına döner, puan bayrakları temizlenir. Oyun durumu sıfırlanır, butonlar gizlenir, odak forma verilir ve Timer yeniden başlar. Space basılıysa bu bilgi korunur; tuş bırakılmadan gelen tekrar olayları yeni zıplama sayılmaz.

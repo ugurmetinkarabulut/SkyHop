@@ -7,7 +7,7 @@ Fırat Üniversitesi Yazılım Mühendisliği 2. sınıf **Nesne Tabanlı Progra
 - C# ve .NET 10 (`net10.0-windows`)
 - Windows Forms; Designer yerine kodla oluşturulan arayüz
 - System.Drawing ile basit şekiller
-- Yerel Git deposu; planlanan GitHub repository adı: **SkyHop**
+- Git / GitHub: [ugurmetinkarabulut/SkyHop](https://github.com/ugurmetinkarabulut/SkyHop)
 
 `UseWindowsForms` ve `EnableWindowsTargeting` etkindir. Harici grafik, oyun motoru veya ek NuGet paketi kullanılmaz.
 
@@ -15,6 +15,7 @@ Fırat Üniversitesi Yazılım Mühendisliği 2. sınıf **Nesne Tabanlı Progra
 
 - SkyHop başlığı, Oyuna Başla butonu ve Space ile başlangıç
 - Her Space basışında zıplama, sürekli yer çekimi; basılı tutmak tekrar zıplatmaz
+- Yeniden başlatırken Space basılıysa, yeni zıplama için bırakılıp tekrar basılması gerekir
 - Sabit hızla sola ilerleyen üç üst/alt engel çifti; başlangıçta ikisi görünür
 - Ekrandan çıkan engellerin sağ tarafa taşınması ve boşluk yüksekliğinin rastgele değişmesi
 - Tamamen geçilen her engel çifti için yalnızca bir puan
@@ -26,7 +27,7 @@ Fırat Üniversitesi Yazılım Mühendisliği 2. sınıf **Nesne Tabanlı Progra
 
 Gereksinimler: Windows 10/11, .NET 10 SDK ve .NET 10 destekleyen Visual Studio'nun **.NET masaüstü geliştirme** iş yükü.
 
-1. Proje klasörünü Windows bilgisayarına kopyalayın. Uzak GitHub deposu henüz oluşturulmadı.
+1. Projeyi `git clone https://github.com/ugurmetinkarabulut/SkyHop.git` ile indirin veya GitHub'dan ZIP olarak indirip açın.
 2. Visual Studio ile `SkyHop.sln` dosyasını açın.
 3. Başlangıç projesinin SkyHop olduğundan emin olup **F5** tuşuna basın.
 4. **Oyuna Başla** butonuna tıklayın veya **Space** tuşuna basın.
@@ -58,7 +59,10 @@ dotnet run --project SkyHop.csproj
 - `dotnet restore SkyHop.sln`: tamamlandı.
 - `dotnet build SkyHop.sln --no-restore`: başarılı, **0 hata ve 1 uyarı**.
 - Uyarı `NU1900`: ortamdan NuGet güvenlik verilerine erişilemedi. Güvenlik denetimi kapatılmadı.
-- Gerçek `Bird.cs` ve `Pipe.cs` dosyalarıyla geçici bir konsol programında yapılan 10 mantık kontrolü geçti: yer çekimi, zıplama, üst sınır, kuş sıfırlama, boşluktan geçiş, üst/alt engel kesişimi, engel hareketi, engel sıfırlama ve boşluk/zemin geometrisi. Kontrol programı proje yapısını büyütmemek için depoya eklenmedi.
+- İkinci aşamada restore ve build yeniden çalıştırıldı; sonuç yine **0 hata, 1 NU1900 uyarısı** oldu.
+- Geçici konsol kontrolünde gerçek `Bird.cs` ve `Pipe.cs` ile `Form1` olay metotlarının aynı gövdeleri kullanıldı. Windows Forms kontrolleri yerine basit test nesneleri kullanıldığı için bu bir Windows arayüz testi değildir. Yeniden başlatmada basılı Space sorunu eski kodda yeniden üretildi; düzeltilmiş kodda kontrol geçti.
+- Tek zıplama, yer çekimi, üst sınır, geçişten önce puan verilmemesi, tek puan, üst/alt/zemin çarpışması, Game Over'da Timer'ın durdurulması ve yeniden başlatma durumu kontrol edildi. 10.000 döngü adımında 137 engel yeniden yerleştirildi; engel aralıkları ve boşluk sınırları korundu. Döngü içindeki kontrollerle birlikte 60.021 doğrulama geçti. Engel döngüsü kontrolünde kuş, çarpışmaları önlemek için oyun alanından uzak tutuldu.
+- Geçici kontrol projesinde nullable bağlamı (`CS8632`) ve sahte odak alanının okunmaması (`CS0414`) uyarıları görüldü; bunlar SkyHop derlemesine ait değildir. Kontrol dosyaları proje yapısını büyütmemek için depoya eklenmedi.
 
 Bu sonuç, Windows'ta çalıştırma veya görsel doğrulama anlamına gelmez. Windows Forms macOS üzerinde çalışmaz. Windows oynanış testleri henüz yapılmadı.
 
@@ -93,4 +97,4 @@ Dosyalar eklendikten sonra README'ye Markdown görsel bağlantıları ekleyin. S
 
 ## GitHub durumu
 
-Yerel Git deposu oluşturulmuştur. `bin/`, `obj/` ve `.vs/` sürüm kontrolüne alınmaz. Uzak repository oluşturma, bağlantı kurma ve push işlemleri sonraki talimat beklenerek yapılacaktır. GitHub repository adı **SkyHop** olmalıdır.
+Yerel depo, `origin` üzerinden [ugurmetinkarabulut/SkyHop](https://github.com/ugurmetinkarabulut/SkyHop) repository'sine bağlıdır. Ana dal `main` olup `origin/main` dalını takip eder. İlk üç geliştirme commiti GitHub'a gönderilmiştir. `bin/`, `obj/` ve `.vs/` sürüm kontrolüne alınmaz.
