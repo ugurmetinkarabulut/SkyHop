@@ -39,3 +39,10 @@ Nesne `new` ile oluşturulurken çalışan, sınıfla aynı isimde ve dönüş t
 ## 10. Yeniden başlatma nasıl çalışıyor?
 
 Yeniden Başlat butonu `StartGame()` metodunu çağırır. Önce Timer durdurulur. Skor sıfırlanır, `bird.Reset()` kuşu başlangıca getirip hızını sıfırlar. Döngüyle bütün engeller ilk konum ve boşluklarına döner, puan bayrakları temizlenir. Oyun durumu sıfırlanır, butonlar gizlenir, odak forma verilir ve Timer yeniden başlar. Space basılıysa bu bilgi korunur; tuş bırakılmadan gelen tekrar olayları yeni zıplama sayılmaz.
+
+## 11. Oyun ekrana nasıl çiziliyor?
+
+- `OnPaint`, pencerenin içi yeniden çizilirken çalışır. Sırayla gökyüzünü, engelleri, zemini ve kuşu çizer. Oyun durumuna göre skor kutusunu ya da menü panelini ekler.
+- `e.Graphics`, formun çizim yüzeyine erişim verir. `FillEllipse` kuşun gövdesini, `FillRectangle` boruları ve `DrawString` metinleri çizer. Oluşturduğumuz fırça, kalem ve yazı tiplerini `using` ile iş bitince serbest bırakırız. İki butonun paylaştığı yazı tipi pencere kapanırken serbest bırakılır.
+- `Invalidate()`, Windows Forms'tan pencereyi yeniden çizmesini ister. Böylece Timer konumları güncelledikten sonra kuş ve borular yeni yerlerinde görünür.
+- `DoubleBuffered`, çizimi önce bellekte hazırlayıp sonra ekrana aktarır. Oyun hareket ederken oluşabilecek titremeyi azaltır.

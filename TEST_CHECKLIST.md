@@ -21,6 +21,11 @@ Bu kontroller henüz yapılmadı. macOS üzerinde restore ve derleme başarılı
 - [ ] Birkaç yeniden başlatma sonunda oyun hızı değişmiyor ve puanlar doğru sayılıyor.
 - [ ] Başka pencereye geçip dönünce Space tekrar çalışıyor; oyun arka planda devam ediyor.
 - [ ] Windows %100 ve %150 ekran ölçeklendirmesinde başlık, skor ve butonlar okunuyor.
+- [ ] Başlangıç panelinde SkyHop başlığı, kısa açıklama, Oyuna Başla ve Space ipucu ayrı alanlarda görünüyor.
+- [ ] Game Over panelinde başlık, son skor ve Yeniden Başlat butonu üst üste gelmiyor.
+- [ ] Oynarken sol üstteki skor okunuyor. Kuş ve borular arka plandan rahatça seçiliyor.
+- [ ] Boru kapakları geçiş boşluğuna taşmıyor. Boru ve çimen kenarları çarpışma konumlarıyla uyumlu görünüyor.
+- [ ] Hareket ve ekran geçişleri sırasında titreme veya eski çizim izi görünmüyor.
 - [ ] Oyun sırasında ve Game Over ekranında pencereyi kapatmak hata oluşturmuyor.
 - [ ] Gerçek başlangıç görüntüsü `screenshots/01-oyun-baslangic.png` olarak eklendi.
 - [ ] Gerçek oynanış görüntüsü `screenshots/02-oyun-devam.png` olarak eklendi.

@@ -21,7 +21,10 @@ Fırat Üniversitesi Yazılım Mühendisliği 2. sınıf **Nesne Tabanlı Progra
 - Tamamen geçilen her engel çifti için yalnızca bir puan
 - Engel veya zemin çarpışmasında Timer'ın durması ve Game Over ekranı
 - Yeniden Başlat butonuyla skor, kuş, engeller ve puan bayraklarının sıfırlanması
-- Açık mavi gökyüzü, sarı kuş, yeşil engeller ve zemin
+- Açık mavi renk geçişli gökyüzü, yumuşak gölgeli bulutlar ve güneş
+- Dış çizgili sarı kuş, gölgeli yeşil borular ve çimenli zemin
+- Başlangıç panelinde kısa açıklama ve Space ipucu, Game Over panelinde son skor
+- Oyun sırasında sol üstte okunaklı skor kutusu
 
 ## Windows üzerinde çalıştırma
 
@@ -63,6 +66,8 @@ dotnet run --project SkyHop.csproj
 - Geçici konsol kontrolünde gerçek `Bird.cs` ve `Pipe.cs` ile `Form1` olay metotlarının aynı gövdeleri kullanıldı. Windows Forms kontrolleri yerine basit test nesneleri kullanıldığı için bu bir Windows arayüz testi değildir. Yeniden başlatmada basılı Space sorunu eski kodda yeniden üretildi; düzeltilmiş kodda kontrol geçti.
 - Tek zıplama, yer çekimi, üst sınır, geçişten önce puan verilmemesi, tek puan, üst/alt/zemin çarpışması, Game Over'da Timer'ın durdurulması ve yeniden başlatma durumu kontrol edildi. 10.000 döngü adımında 137 engel yeniden yerleştirildi; engel aralıkları ve boşluk sınırları korundu. Döngü içindeki kontrollerle birlikte 60.021 doğrulama geçti. Engel döngüsü kontrolünde kuş, çarpışmaları önlemek için oyun alanından uzak tutuldu.
 - Geçici kontrol projesinde nullable bağlamı (`CS8632`) ve sahte odak alanının okunmaması (`CS0414`) uyarıları görüldü; bunlar SkyHop derlemesine ait değildir. Kontrol dosyaları proje yapısını büyütmemek için depoya eklenmedi.
+
+12 Kasım 2026'da görsel değişikliklerden sonra `dotnet build SkyHop.sln` macOS üzerinde başarıyla tamamlandı. Derleme 0 hata verdi. NuGet güvenlik verilerine erişilemediği için aynı `NU1900` uyarısı geri yükleme ve derleme sırasında iki kez raporlandı.
 
 Bu sonuç, Windows'ta çalıştırma veya görsel doğrulama anlamına gelmez. Windows Forms macOS üzerinde çalışmaz. Windows oynanış testleri henüz yapılmadı.
 
