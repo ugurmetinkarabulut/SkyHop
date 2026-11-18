@@ -61,6 +61,7 @@ public class Form1 : Form
         gameTimer.Interval = 20;
         gameTimer.Tick += GameTimer_Tick;
         KeyDown += Form1_KeyDown;
+        KeyPress += Form1_KeyPress;
         KeyUp += Form1_KeyUp;
         Deactivate += Form1_Deactivate;
     }
@@ -115,7 +116,6 @@ public class Form1 : Form
         if (e.KeyCode == Keys.Space)
         {
             e.Handled = true;
-            e.SuppressKeyPress = true;
             if (spacePressed)
             {
                 return;
@@ -131,6 +131,15 @@ public class Form1 : Form
             {
                 bird.Jump();
             }
+        }
+    }
+
+    // Space karakteri burada işlenir; tuşun bırakıldığı KeyUp olayı korunur.
+    private void Form1_KeyPress(object? sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == ' ')
+        {
+            e.Handled = true;
         }
     }
 

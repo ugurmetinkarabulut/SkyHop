@@ -8,6 +8,8 @@ Bu kontroller henüz yapılmadı. macOS üzerinde restore ve derleme başarılı
 - [ ] Oyuna Başla butonu ve ilk ekranda Space ayrı ayrı oyunu başlatıyor.
 - [ ] Butonla başlattıktan sonra Space odağı doğru alıyor ve kuşu zıplatıyor.
 - [ ] Space'i basılı tutmak tekrar tekrar zıplatmıyor; bırakıp yeniden basınca zıplıyor.
+- [ ] Space'e art arda en az 10 kez basıp bırakınca her basış çalışıyor ve tuş kilitli kalmıyor.
+- [ ] Başlangıç ve Game Over panellerinde buton odaktayken Space beklenmedik buton tıklaması veya uyarı sesi oluşturmuyor.
 - [ ] Game Over sırasında Space'i basılı tutup fareyle Yeniden Başlat'a tıklayınca, Space bırakılmadan kuş zıplamıyor; bırakıp tekrar basınca zıplıyor.
 - [ ] Yeniden Başlat'a fareyle tıkladıktan sonra normal Space basışları çalışıyor.
 - [ ] Zıplamayan kuş yer çekimiyle düşüyor; üst sınırdan çıkmıyor.

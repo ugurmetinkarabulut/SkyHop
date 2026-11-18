@@ -8,6 +8,8 @@
 
 Bir tuşa basıldığında oluşan olaydır. `Form1_KeyDown`, basılan tuşun `Keys.Space` olup olmadığını kontrol eder. `KeyPreview = true`, formun klavye olaylarını kontrollerden önce almasını sağlar. `spacePressed` ve `KeyUp`, basılı tutulan Space'in sürekli zıplatmasını engeller.
 
+`KeyDown` içinde `e.Handled = true` kullanılır. Space karakteri ayrıca `Form1_KeyPress` içinde işlenir. `SuppressKeyPress` kullanılmaz, çünkü Microsoft belgeleri bu özelliğin `KeyUp` olayını da bastırdığını belirtir. `KeyUp` geldiğinde `spacePressed = false` olur ve sonraki basış yeniden zıplatır. [Microsoft klavye olayları belgesi](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/input-keyboard/events)
+
 ## 3. Kuşun zıplamasını nasıl sağladık?
 
 Space'e basılınca `bird.Jump()` çağrılır. `Bird.Jump()`, `VerticalSpeed` değerini `-7.5f` yapar. Ekranda Y değeri aşağı doğru arttığı için negatif hız kuşu yukarı taşır.
@@ -46,3 +48,39 @@ Yeniden Başlat butonu `StartGame()` metodunu çağırır. Önce Timer durdurulu
 - `e.Graphics`, formun çizim yüzeyine erişim verir. `FillEllipse` kuşun gövdesini, `FillRectangle` boruları ve `DrawString` metinleri çizer. Oluşturduğumuz fırça, kalem ve yazı tiplerini `using` ile iş bitince serbest bırakırız. İki butonun paylaştığı yazı tipi pencere kapanırken serbest bırakılır.
 - `Invalidate()`, Windows Forms'tan pencereyi yeniden çizmesini ister. Böylece Timer konumları güncelledikten sonra kuş ve borular yeni yerlerinde görünür.
 - `DoubleBuffered`, çizimi önce bellekte hazırlayıp sonra ekrana aktarır. Oyun hareket ederken oluşabilecek titremeyi azaltır.
+
+## 12. public ve private farkı nedir?
+
+`public` üyeye başka sınıflar erişebilir. `Bird.Jump()` bu yüzden `Form1` tarafından çağrılabilir. `private` üyeye yalnızca kendi sınıfı erişir. `Form1` içindeki `score` alanını oyun formu yönetir.
+
+## 13. const ve readonly farkı nedir?
+
+`const` değeri derlenirken belirlenir ve değişmez. `Bird.Width = 38` buna örnektir. `readonly` alan tanımlanırken veya constructor içinde atanır. `bird`, `Form1()` içinde oluşturulur ve daha sonra başka bir kuş nesnesiyle değiştirilemez. Kuş nesnesinin konumu yine değişebilir.
+
+## 14. get ve private set neden kullanılır?
+
+`Bird.Y` özelliğindeki `get`, formun kuşun konumunu okumasını sağlar. `private set`, konumu değiştirme yetkisini `Bird` sınıfında tutar. `Update()` ve `Reset()` bu değeri değiştirir. `Bounds` ise yalnızca `get` içerir ve mevcut konumdan bir `Rectangle` hesaplar.
+
+## 15. `List<Pipe>` neden kullanılır?
+
+`pipes`, aynı türden birden fazla engel çiftini tutan listedir. Constructor içindeki `Add` çağrıları üç engel çifti ekler. `for` döngüsü ve `pipes.Count` sayesinde bu çiftlerin hepsi hareket ettirilir ve çarpışma için kontrol edilir.
+
+## 16. Event Handler nedir?
+
+Bir olay gerçekleştiğinde çağrılan metottur. `gameTimer.Tick += GameTimer_Tick`, Timer olayını oyun döngüsü metoduna bağlar. `restartButton.Click += RestartButton_Click` ise butona tıklanınca yeniden başlatmayı sağlar. `sender` olayı oluşturan nesneyi, `e` olayın bilgilerini taşır.
+
+## 17. Rectangle ve IntersectsWith ne işe yarar?
+
+`Rectangle`, X, Y, genişlik ve yükseklik ile bir dikdörtgen tanımlar. `Bird.Bounds` kuşu, `Pipe.TopBounds` ve `BottomBounds` engelleri temsil eder. `birdBounds.IntersectsWith(pipes[i].TopBounds)` kuşun üst engelle kesişip kesişmediğini döndürür.
+
+## 18. override neden kullanılır?
+
+Üst sınıfın sunduğu bir metodu kendi sınıfımız için uyarlamamızı sağlar. `Form1 : Form`, Windows Forms'un `Form` sınıfından türemiştir. `OnPaint` metodu `override` edilerek oyunun çizimleri eklenir. `base.OnPaint(e)` üst sınıfın çizim olayını da çalıştırır.
+
+## 19. Dispose ne işe yarar?
+
+Bir nesnenin kullandığı kaynakları serbest bırakır. `Form1.Dispose(bool disposing)` içinde `gameTimer.Dispose()` Timer'ı, `menuButtonFont.Dispose()` ortak buton yazı tipini temizler. `base.Dispose(disposing)` formun kendi kontrollerini temizlemesini sağlar.
+
+## 20. using ile kaynak yönetimi nasıl yapılır?
+
+`using SolidBrush sun = new SolidBrush(...)` gibi bir tanımlamada fırça metottan çıkarken otomatik olarak serbest bırakılır. Çizimlerde oluşturulan `Font`, `Pen` ve `StringFormat` nesneleri de bu şekilde temizlenir. `Brushes.White` gibi hazır paylaşılan fırçaları ve Windows'un verdiği `e.Graphics` nesnesini biz oluşturmadığımız için serbest bırakmayız. Dosyanın başındaki `using System.Drawing;` ise sınıf adlarını kısa yazmamıza yarar.
